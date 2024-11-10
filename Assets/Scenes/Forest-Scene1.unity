@@ -4761,8 +4761,8 @@ MonoBehaviour:
     - It isn't often that people pass through here.
     - If you aren't a bird like me, able to see above the trees, you'll definitely
       get lost.
-    - Good luck.
-    - ...I insist you turn around.
+    - I can help you out, the house you're looking for is in the direction of star
+      Algenib. Good luck!
 --- !u!114 &1022657412
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6016,7 +6016,8 @@ MonoBehaviour:
     sentences:
     - Hello, traveller.
     - Thanks for coming to play in the forest!
-    - You can navigate using the stars
+    - You can navigate using the stars, all the animals from the forest do that.
+    - I have a good nose, so I can come find you soon if you lose your way!
 --- !u!114 &1268911906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11811,7 +11812,7 @@ MonoBehaviour:
     - Hello, traveller.
     - I'm very scared of this house.
     - It makes me feel nervous, I miss my cat friend, I want to see the stars again.
-    - Can you help me get out?
+    - Can you help me get out? I feel sick.
 --- !u!114 &1526239300
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15039,11 +15040,11 @@ MonoBehaviour:
     name: Kitty Cat
     sentences:
     - Hello, traveller.
-    - My brother is lost, and needs your help.
+    - My friend, the rat, is lost and needs your help.
     - He is only young and wanted to find somewhere to sleep, but it's too dangerous
       in there alone.
     - There is a house deeper in the forest, I fear he went in, please check it and
-      bring my brother back here.
+      bring the rat back here.
 --- !u!114 &1640106442
 MonoBehaviour:
   m_ObjectHideFlags: 0

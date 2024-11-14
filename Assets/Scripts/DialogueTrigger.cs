@@ -8,6 +8,6 @@ public class DialogueTrigger : MonoBehaviour
     public void TriggerDialogue()
     {
         FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
+        AudioEventManager.PlaySFX(null, "UI Beep", 0.6f, 1.0f, true, 0.1f, 0f, "UI sound");
     }
-    
 }

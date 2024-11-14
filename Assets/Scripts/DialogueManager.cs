@@ -7,9 +7,7 @@ public class DialogueManager : MonoBehaviour
 {
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI dialogueText;
-
     public Animator animator;
-
     private Queue<string> sentences;
 
     void Start()
@@ -37,6 +35,7 @@ public class DialogueManager : MonoBehaviour
 
     public void DisplayNextSentence()
     {
+        AudioEventManager.PlaySFX(null, "UI Beep", 0.6f, 1.0f, true, 0.1f, 0f, "UI sound");
         if (sentences.Count == 0)
         {
             EndDialogue();
@@ -53,6 +52,7 @@ public class DialogueManager : MonoBehaviour
         dialogueText.text = "";
         foreach (char letter in sentence.ToCharArray())
         {
+            //AudioEventManager.PlaySFX(null, "Sine Beep", 0.5f, 1.0f, true, 0.1f, 0f, "UI sound");
             dialogueText.text += letter;
             yield return null;
         }

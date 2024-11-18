@@ -7,6 +7,7 @@ public class CameraSwitch : MonoBehaviour
     public GameObject mainCam;
     public GameObject fixedCam;
     private bool isInside = false;
+    public Animator animator;
 
     private void OnTriggerEnter(Collider other)
     { 
@@ -30,11 +31,15 @@ public class CameraSwitch : MonoBehaviour
     {
         mainCam.SetActive(false);
         fixedCam.SetActive(true);
+        AudioEventManager.PlaySFX(null, "CameraShutter1", 0.6f, 1.0f, true, 0.1f, 0f, "Cam sound");
+        animator.SetBool("Fade", true);
     }
 
     private void SwitchToMainCam()
     {
         mainCam.SetActive(true);
         fixedCam.SetActive(false);
+        AudioEventManager.PlaySFX(null, "CameraShutter2", 0.6f, 1.0f, true, 0.1f, 0f, "Cam sound");
+        animator.SetBool("Fade", false);
     }
 }

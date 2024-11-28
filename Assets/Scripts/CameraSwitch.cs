@@ -6,6 +6,7 @@ public class CameraSwitch : MonoBehaviour
 {
     public GameObject mainCam;
     public GameObject fixedCam;
+    public GameObject fixedCamUI;
     private bool isInside = false;
     public Animator animator;
 
@@ -31,6 +32,7 @@ public class CameraSwitch : MonoBehaviour
     {
         mainCam.SetActive(false);
         fixedCam.SetActive(true);
+        fixedCamUI.SetActive(true);
         AudioEventManager.PlaySFX(null, "CameraShutter1", 0.6f, 1.0f, true, 0.1f, 0f, "Cam sound");
         animator.SetBool("Fade", true);
     }
@@ -39,6 +41,7 @@ public class CameraSwitch : MonoBehaviour
     {
         mainCam.SetActive(true);
         fixedCam.SetActive(false);
+        fixedCamUI.SetActive(false);
         AudioEventManager.PlaySFX(null, "CameraShutter2", 0.6f, 1.0f, true, 0.1f, 0f, "Cam sound");
         animator.SetBool("Fade", false);
     }

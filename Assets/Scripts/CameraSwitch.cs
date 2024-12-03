@@ -4,32 +4,34 @@ using UnityEngine;
 
 public class CameraSwitch : MonoBehaviour
 {
-    public GameObject mainCam;
-    public GameObject fixedCam;
-    public GameObject fixedCamUI;
-    private bool isInside = false;
+    // Camera properties received to be set Active or Inactive in the below methods
+    public GameObject mainCam; // Main 3rd person cam that follows the player
+    public GameObject fixedCam; // Cam that overlooks the house
+    public GameObject fixedCamUI; // Additional UI element becomes active as the fixed cam becomes active - a render texture that follows an additional camera that has a first person perspective, only active while the fixed cam is active. (Not referenced in the script)
+    
+    private bool isInside = false; // bool tracking if the player is inside the house - uses a collider trigger
+
     public Animator animator;
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other) // As the player enters the collider space, the fixed cam is activated and main cam deactivated
     { 
         if (other.CompareTag("Player") && !isInside)
         {
-            isInside = true;
             SwitchToFixedCam();
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerExit(Collider other) // If the player chooses to leave the house the camera will go back to how it was before
     {
         if (other.CompareTag("Player") && isInside)
         {
-            isInside = false;
             SwitchToMainCam();
         }
     }
 
-    private void SwitchToFixedCam()
+    private void SwitchToFixedCam() // Functions are stored in a seperate method rather than being called during the OnTriggerEnter method - optimised and good practise
     {
+        isInside = true;
         mainCam.SetActive(false);
         fixedCam.SetActive(true);
         fixedCamUI.SetActive(true);
@@ -39,6 +41,7 @@ public class CameraSwitch : MonoBehaviour
 
     private void SwitchToMainCam()
     {
+        isInside = false;
         mainCam.SetActive(true);
         fixedCam.SetActive(false);
         fixedCamUI.SetActive(false);

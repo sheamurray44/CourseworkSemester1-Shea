@@ -18,13 +18,9 @@ public class DialogueManager : MonoBehaviour
     public void StartDialogue(Dialogue dialogue)
     {
         Debug.Log("Interacting with" + dialogue.name);
-
         animator.SetBool("IsOpen", true);
-
         AudioEventManager.PlaySFX(null, "Book Open", 0.7f, 1.0f, true, 0.1f, 0f, "UI sound");
-
         nameText.text = dialogue.name;
-
         sentences.Clear();
 
         foreach (string sentence in dialogue.sentences)
@@ -54,7 +50,6 @@ public class DialogueManager : MonoBehaviour
         dialogueText.text = "";
         foreach (char letter in sentence.ToCharArray())
         {
-            //AudioEventManager.PlaySFX(null, "Short Beep", 0.5f, 1.0f, true, 0.1f, 0f, "UI sound");
             dialogueText.text += letter;
             yield return null;
         }

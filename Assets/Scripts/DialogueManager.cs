@@ -9,15 +9,16 @@ public class DialogueManager : MonoBehaviour
     public TextMeshProUGUI dialogueText;
     public Animator animator;
     private Queue<string> sentences;
-
+    private PlayerInteraction playerInteraction;
     void Start()
     {
         sentences = new Queue<string>();
+        playerInteraction = GameObject.FindObjectOfType<PlayerInteraction>();
     }
 
     public void StartDialogue(Dialogue dialogue)
     {
-        Debug.Log("Interacting with" + dialogue.name);
+        Debug.Log("Interacting with " + dialogue.name);
         animator.SetBool("IsOpen", true);
         AudioEventManager.PlaySFX(null, "Book Open", 0.7f, 1.0f, true, 0.1f, 0f, "UI sound");
         nameText.text = dialogue.name;
@@ -60,5 +61,6 @@ public class DialogueManager : MonoBehaviour
         Debug.Log("End of Interaction.");
         animator.SetBool("IsOpen", false);
         AudioEventManager.PlaySFX(null, "Book Close", 0.7f, 1.0f, true, 0.1f, 0f, "UI sound");
+        playerInteraction.UpdateUI();
     }
 }

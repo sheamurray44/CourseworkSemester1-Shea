@@ -7,8 +7,8 @@ public class CameraSwitch : MonoBehaviour
     // Camera properties received to be set Active or Inactive in the below methods
     public GameObject mainCam; // Main 3rd person cam that follows the player
     public GameObject fixedCam; // Cam that overlooks the house
-    public GameObject fixedCamUI; // Additional UI element becomes active as the fixed cam becomes active - a render texture that follows an additional camera that has a first person perspective, only active while the fixed cam is active. (Not referenced in the script)
-    
+    public GameObject fixedCamUI; // Additional UI element becomes active as the fixed cam becomes active - a render texture that follows an additional camera that has a first person perspective.
+
     private bool isInside = false; // bool tracking if the player is inside the house - uses a collider trigger
 
     public Animator animator;
@@ -39,7 +39,7 @@ public class CameraSwitch : MonoBehaviour
         animator.SetBool("Fade", true);
     }
 
-    private void SwitchToMainCam()
+    private void SwitchToMainCam() 
     {
         isInside = false;
         mainCam.SetActive(true);

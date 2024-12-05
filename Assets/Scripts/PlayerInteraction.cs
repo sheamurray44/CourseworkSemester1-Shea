@@ -6,15 +6,18 @@ using TMPro;
 public class PlayerInteraction : MonoBehaviour
 {
     public TextMeshProUGUI interactionsText;
-    public int totalNPCs = 11;
+    public int totalNPCs = 12;
+    public List<string> interactedNPCs = new List<string>();
 
-    private HashSet<string> interactedNPCs = new HashSet<string>();
-
+    private void Awake()
+    {
+        UpdateUI();
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("NPC"))
         {
-            NPC npc = GetComponent<NPC>();
+            NPC npc = other.GetComponent<NPC>();
             if (npc != null)
             {
                 InteractWithNPC(npc);
@@ -27,11 +30,10 @@ public class PlayerInteraction : MonoBehaviour
         if (!interactedNPCs.Contains(npc.npcID))
         {
             interactedNPCs.Add(npc.npcID);
-            UpdateUI();
         }
     }
 
-    private void UpdateUI()
+    public void UpdateUI()
     {
         interactionsText.text = $"{interactedNPCs.Count}/{totalNPCs} Conversations Had";
     }

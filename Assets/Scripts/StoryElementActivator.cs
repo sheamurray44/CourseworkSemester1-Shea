@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Using triggers, this script activates the interact button for each npc, allowing the player to trigger their unique dialogue.
+/// </summary>
+
 public class StoryElementActivator : MonoBehaviour
 
-    // Using triggers, this script activates the interact button for each npc, allowing the player to trigger their unique dialogue.
 {
     public GameObject interactButton;
 

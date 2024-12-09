@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Script handles the transition between the forest and house areas of the game, fixed cam and UI elements are set to active while in the house, and main camera is deactivated, and vice versa as the pllayer moves between areas.
+/// </summary>
+
 public class CameraSwitch : MonoBehaviour
 {
     // Camera properties received to be set Active or Inactive in the below methods

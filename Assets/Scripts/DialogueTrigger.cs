@@ -11,13 +11,13 @@ public class DialogueTrigger : MonoBehaviour
     public Dialogue dialogue; // Reference to the dialogue class - allows lines to be written.
     private DialogueManager dialogueManager; 
 
-    private void Awake()
+    private void Awake()  // Dialogue Manager is found during Awake only once isntead of each time the dialogue is triggered in the method below - optomised and good practise.
     {
-        dialogueManager = FindObjectOfType<DialogueManager>();  // Dialogue Manager is found during Awake only once isntead of each time the dialogue is triggered in the method below - optomised and good practise.
+        dialogueManager = FindObjectOfType<DialogueManager>();
     }
 
-    public void TriggerDialogue()
+    private void TriggerDialogue() // Start dialogue method is called here from the manager
     {
-        dialogueManager.StartDialogue(dialogue); // Start dialogue method is called here from the manager
+        dialogueManager.StartDialogue(dialogue);
     }
 }

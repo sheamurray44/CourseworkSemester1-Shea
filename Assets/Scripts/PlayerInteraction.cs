@@ -14,27 +14,29 @@ public class PlayerInteraction : MonoBehaviour
     public TextMeshProUGUI updateText;
     public GameObject progressText;
     public GameObject finishText;
-    public int totalNPCs = 12;
-    public List<string> interactedNPCs = new List<string>();
+    private int totalNPCs = 12;
+    private List<string> interactedNPCs = new List<string>();
 
     private void Awake() // UI immediately updates to show 0/12 NPCs spoken with
     {
         UpdateUI();
     }
-    private void OnTriggerEnter(Collider other) // This gunction will count an NPC as interacted with and add it to the list of NPCs spoken too, preventing multiple updates when interaced with multiple times
+
+    private void OnTriggerEnter(Collider other) // This function will count an NPC as interacted with and add it to the list of NPCs spoken too, preventing multiple updates when interaced with multiple times
     {
         if (other.CompareTag("NPC"))
         {
             NPC npc = other.GetComponent<NPC>();
             if (npc != null)
             {
-                InteractWithNPC(npc);
+                LogNPC(npc);
             }
         }
     }
 
-    private void InteractWithNPC(NPC npc)
+    public void LogNPC(NPC npc)
     {
+        NPC nPC = GetComponent<NPC>();
         if (!interactedNPCs.Contains(npc.npcID))
         {
             interactedNPCs.Add(npc.npcID);
@@ -45,7 +47,7 @@ public class PlayerInteraction : MonoBehaviour
     {
         interactionsText.text = $"{interactedNPCs.Count}/{totalNPCs} Conversations Had";
 
-        if (interactedNPCs.Count > 6 && progressText == true)
+        if (interactedNPCs.Count > 6)
         {
             StartCoroutine(ProgressUpdate());
         }
@@ -55,12 +57,12 @@ public class PlayerInteraction : MonoBehaviour
         }
     }
 
-    public IEnumerator ProgressUpdate() // A UI element that updates the players when they're about half way through the game.
+    private IEnumerator ProgressUpdate() // A UI element that updates the players when they're about half way through the game.
     {
         updateText.text = $"{totalNPCs - interactedNPCs.Count} Conversations Remaining. Keep Searching.";
         progressText.SetActive(true);
         AudioEventManager.PlaySFX(null, "Sine Beep", 0.7f, 1.0f, true, 0.1f, 0f, "UI sound");
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(3.5f);
         progressText.SetActive(false);
         AudioEventManager.PlaySFX(null, "Sine Beep", 0.7f, 1.0f, true, 0.1f, 0f, "UI sound");
     }
@@ -70,7 +72,7 @@ public class PlayerInteraction : MonoBehaviour
         finishText.SetActive(true);
     }
 
-    public void RestartGame() // The method for restarting the scene is stored here, the button is part of the end of game UI and allows for game restart with OnClick events.
+    private void RestartGame() // The method for restarting the scene is stored here, the button is part of the end of game UI and allows for game restart with OnClick events.
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }

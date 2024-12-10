@@ -8,13 +8,10 @@ using UnityEngine;
 
 public class CameraSwitch : MonoBehaviour
 {
-    // Camera properties received to be set Active or Inactive in the below methods
     public GameObject mainCam; // Main 3rd person cam that follows the player
     public GameObject fixedCam; // Cam that overlooks the house
     public GameObject fixedCamUI; // Additional UI element becomes active as the fixed cam becomes active - a render texture that follows an additional camera that has a first person perspective.
-
     private bool isInside = false; // bool tracking if the player is inside the house - uses a collider trigger
-
     public Animator animator;
 
     private void OnTriggerEnter(Collider other) // As the player enters the collider space, the fixed cam is activated and main cam deactivated

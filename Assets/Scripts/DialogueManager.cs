@@ -14,7 +14,8 @@ public class DialogueManager : MonoBehaviour
     public Animator animator;
     private Queue<string> sentences;
     private PlayerInteraction playerInteraction;
-    void Start() // Queue and playerinteraction script initialised in Start
+
+    private void Awake() // Queue and playerinteraction script initialised in Start
     {
         sentences = new Queue<string>();
         playerInteraction = GameObject.FindObjectOfType<PlayerInteraction>();
@@ -36,7 +37,7 @@ public class DialogueManager : MonoBehaviour
         DisplayNextSentence();
     }
 
-    public void DisplayNextSentence() // Handles showing the next sentence in the queue and calls the end dialogue method
+    private void DisplayNextSentence() // Handles showing the next sentence in the queue and calls the end dialogue method
     {
         AudioEventManager.PlaySFX(null, "UI Beep", 0.6f, 1.0f, true, 0.1f, 0f, "UI sound");
         if (sentences.Count == 0)
@@ -50,17 +51,17 @@ public class DialogueManager : MonoBehaviour
         StartCoroutine(TypeSentence(sentence));
     }
 
-    IEnumerator TypeSentence (string sentence) // Individually types out each character in the dialogue box.
+    private IEnumerator TypeSentence(string sentence) // Individually types out each character in the dialogue box.
     {
         dialogueText.text = "";
         foreach (char letter in sentence.ToCharArray())
         {
             dialogueText.text += letter;
-            yield return null;
+            yield return new WaitForSeconds(0.01f);
         }
     }
 
-    void EndDialogue() // Animates the text box to move away and starts the Tracker Delay coroutine
+    private void EndDialogue() // Animates the text box to move away and starts the Tracker Delay coroutine
     {
         Debug.Log("End of Interaction.");
         animator.SetBool("IsOpen", false);
